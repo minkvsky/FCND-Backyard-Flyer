@@ -46,7 +46,8 @@ class BackyardFlyer(Drone):
             return dis
         if self.flight_state == States.TAKEOFF:
             # self.all_waypoint = self.calculate_box()
-            self.waypoint_transition()
+            if -1.0 * self.local_position[2] > 0.95 * self.target_position[2]:
+                self.waypoint_transition()
 
         if self.flight_state == States.WAYPOINT:
             if planedistance(self.local_position[:2], self.target_position[:2]) < 1:
